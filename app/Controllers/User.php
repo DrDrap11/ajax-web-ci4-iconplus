@@ -32,7 +32,7 @@ class User extends Controller
         $dbDetails = array(
             "host" => $this->db->hostname,
             "user" => $this->db->username,
-            "pass" => $this->db->status,
+            "pass" => $this->db->password,
             "db" => $this->db->database,
         );
 

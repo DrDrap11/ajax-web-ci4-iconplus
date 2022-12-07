@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'icon',
+        'database' => 'iconplus',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
