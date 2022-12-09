@@ -1,96 +1,98 @@
 <div class="container-fluid pt-5">
+  <?php if ($_SESSION['role'] == 'Admin') : ?>
     <div id="tombol" class="btn-group">
-        <button id="tambah" class="btn btn-primary mb-2 me-2" data-bs-toggle="modal" data-bs-target="#tambahModal">Tambah OLT</button>
+      <button id="tambah" class="btn btn-primary mb-2 me-2" data-bs-toggle="modal" data-bs-target="#tambahModal">Tambah OLT</button>
     </div>
-    <div class="card">
-        <div class="card-header bg-primary text-white">
-            <h4 class="card-title" style="text-align: center;">Data OLT</h4>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="tabel" class="table card-table table-vcenter text-nowrap datatable stripe hover">
-                <thead>
-                  <tr>
-                    <th class="text-center">Aksi</th>
-                    <th class="text-center">ID</th>
-                    <th class="text-center">OLT</th>
-                  </tr>
-                </thead>
-                <thead>
-                  <tr>
-                    <th>Aksi</th>
-                    <th>ID</th>
-                    <th>OLT</th>
-                  </tr>
-                </thead>
-                </table>
-            </div>
-        </div>
+  <?php endif; ?>
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h4 class="card-title" style="text-align: center;">Data OLT</h4>
     </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table id="tabel" class="table card-table table-vcenter text-nowrap datatable stripe hover">
+          <thead>
+            <tr>
+              <th class="text-center">Aksi</th>
+              <th class="text-center">ID</th>
+              <th class="text-center">OLT</th>
+            </tr>
+          </thead>
+          <thead>
+            <tr>
+              <th>Aksi</th>
+              <th>ID</th>
+              <th>OLT</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--   Modal Tambah OLT-->
 <div class="modal modal-blur fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <form action="<?= route_to('add.olt'); ?>" method="post" id="add-olt-form" autocomplete="off">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data OLT</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">Input OLT</label>
-                    <div class="col">
-                      <input type="text" class="form-control" id="olt_nama" name="olt_nama" placeholder="Input OLT baru">
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="btn-save">Submit</button>
-                </div>
-            </form>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form action="<?= route_to('add.olt'); ?>" method="post" id="add-olt-form" autocomplete="off">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Data OLT</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <div class="form-group mb-3 row">
+            <label class="form-label col-3 col-form-label">Input OLT</label>
+            <div class="col">
+              <input type="text" class="form-control" id="olt_nama" name="olt_nama" placeholder="Input OLT baru">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="btn-save">Submit</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <!--   Modal Edit OLT-->
 <div class="modal modal-blur fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <form method="post" id="edit-olt-form" autocomplete="off">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Data OLT</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                  <input type="hidden" id="edit_id">
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">ID</label>
-                    <div class="col">
-                      <input type="text" id="olt_id" class="form-control" readonly>
-                    </div>
-                  </div>
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">OLT</label>
-                    <div class="col">
-                      <input type="text" id="olt_nama_edit" class="form-control">
-                    </div>
-                  </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary btn-update">Update</button>
-                </div>
-            </form>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form method="post" id="edit-olt-form" autocomplete="off">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Data OLT</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <input type="hidden" id="edit_id">
+          <div class="form-group mb-3 row">
+            <label class="form-label col-3 col-form-label">ID</label>
+            <div class="col">
+              <input type="text" id="olt_id" class="form-control" readonly>
+            </div>
+          </div>
+          <div class="form-group mb-3 row">
+            <label class="form-label col-3 col-form-label">OLT</label>
+            <div class="col">
+              <input type="text" id="olt_nama_edit" class="form-control">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-update">Update</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 </body>
 
@@ -110,27 +112,27 @@
 <script type="text/javascript" src="Assets/js/litepicker.js"></script>
 <script>
   // @formatter:off
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function() {
     window.Litepicker && (new Litepicker({
-    element: document.getElementById('datepicker-icon'),
-    buttonText: {
-      previousMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+      element: document.getElementById('datepicker-icon'),
+      buttonText: {
+        previousMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="15 6 9 12 15 18" /></svg>`,
-      nextMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+        nextMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 6 15 12 9 18" /></svg>`,
-    },
+      },
     }));
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function() {
     window.Litepicker && (new Litepicker({
-    element: document.getElementById('datepicker-icon-edit'),
-    buttonText: {
-      previousMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+      element: document.getElementById('datepicker-icon-edit'),
+      buttonText: {
+        previousMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="15 6 9 12 15 18" /></svg>`,
-      nextMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+        nextMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
   <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 6 15 12 9 18" /></svg>`,
-    },
+      },
     }));
   });
   // @formatter:on
@@ -244,7 +246,7 @@
 
     $(document).on('click', '.btn-update', function(e) {
       e.preventDefault();
-      
+
       $.ajax({
         method: "post",
         url: "olt/updateOlt",
@@ -307,4 +309,3 @@
 
   });
 </script>
-

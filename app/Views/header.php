@@ -24,7 +24,7 @@
   <link href="Assets/css/tabler-payments.min.css" rel="stylesheet" />
   <link href="Assets/css/tabler-vendors.min.css" rel="stylesheet" />
   <link href="Assets/css/demo.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.css" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
   <link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">
@@ -33,17 +33,18 @@
   <link rel="shortcut icon" type="image/x-icon" href="/Assets/img/logo.png">
 
   <style>
-    .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current{
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
       color: white ! important;
       background-color: #467fd0;
       border: #467fd0 1p radius;
       border-radius: 5px;
     }
 
-    .dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
       color: #467fd0 !important;
       border: 1px solid white;
-      background: rgba(76, 175, 80, 0); 
+      background: rgba(76, 175, 80, 0);
       background: -webkit-linear-gradient(white 0%, white 0%, white 0%);
       background: -moz-linear-gradient(white 0%, white 0%, white 0%);
       background: -ms-linear-gradient(white 0%, white 0%, white 0%);
@@ -98,7 +99,7 @@
     .btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
       border-radius: 4px;
     }
-    
+
     /* .buttons-html5 {
       float: left;
       margin-left: 20px;
@@ -129,30 +130,42 @@
           </a>
         </h1>
         <div class="collapse navbar-collapse" id="navbar-menu">
-            <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
-              <ul class="navbar-nav">
+          <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/data">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                      <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    Data Survey
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/olt">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <polyline points="12 4 4 8 12 12 20 8 12 4" />
+                      <polyline points="4 12 12 16 20 12" />
+                      <polyline points="4 16 12 20 20 16" />
+                    </svg>
+                  </span>
+                  <span class="nav-link-title">
+                    OLT
+                  </span>
+                </a>
+              </li>
+              <?php if ($_SESSION['role'] == 'Admin') : ?>
                 <li class="nav-item">
-                  <a class="nav-link" href="/data" >
-                    <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="5 12 3 12 12 3 21 12 19 12" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
-                    </span>
-                    <span class="nav-link-title">
-                      Data Survey
-                    </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/olt" >
-                    <span class="nav-link-icon d-md-none d-lg-inline-block">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="12 4 4 8 12 12 20 8 12 4" /><polyline points="4 12 12 16 20 12" /><polyline points="4 16 12 20 20 16" /></svg>
-                    </span>                    
-                    <span class="nav-link-title">
-                      OLT
-                    </span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/User" >
+                  <a class="nav-link" href="/User">
                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -160,16 +173,17 @@
                         <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                         <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
-                    </svg>
-                  </span>                   
+                      </svg>
+                    </span>
                     <span class="nav-link-title">
                       Data User
                     </span>
                   </a>
                 </li>
-              </ul>
-            </div>
+              <?php endif; ?>
+            </ul>
           </div>
+        </div>
         <div class="navbar-nav flex-row order-md-last">
           <div class="nav-item dropdown">
             <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
@@ -188,7 +202,7 @@
               <a href="/login/logout" class="dropdown-item">Logout</a>
             </div>
           </div>
-          
+
         </div>
       </div>
     </header>

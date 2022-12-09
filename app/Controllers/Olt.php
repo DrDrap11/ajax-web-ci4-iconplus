@@ -64,6 +64,10 @@ class Olt extends Controller
                 "db" => "olt_id",
                 "dt" => 0,
                 "formatter" => function ($d, $row) {
+                    if ($_SESSION['role'] != 'Admin') {
+                        return '<div></div>';
+                    }
+
                     return "<div class='btn-group'>
                                   <a class='btn btn-warning btn-edit kota' data-id='" . $row['olt_id'] . "' data-bs-toggle='modal' data-bs-target='#editModal' id='updateBtn' style='margin-right: 10px'><i class='ti ti-edit'></i></a>
                                   <button class='btn btn btn-danger' data-id='" . $row['olt_id'] . "' id='deleteOltBtn'> <i class='ti ti-trash'></i></button>

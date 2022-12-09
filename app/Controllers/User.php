@@ -20,6 +20,10 @@ class User extends Controller
         $uname['user_name'] = $session->get('user_name');
         $uname['role'] = $session->get('role');
 
+        if ($session->get('role') != 'Admin') {
+            return redirect()->to('login');
+        }
+
         echo view('header', $uname);
         echo view('user_view');
         echo view('footer');

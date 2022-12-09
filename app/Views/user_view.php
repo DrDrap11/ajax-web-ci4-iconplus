@@ -311,7 +311,7 @@
 
             $.ajax({
                 method: "post",
-                url: "user/updateUser",
+                url: "User/updateUser",
                 // data: (id_kota != "") ? data1 : data2,
                 data: {
                     'user_id': $('#user_id').val(),
@@ -340,7 +340,7 @@
 
         $(document).on('click', '#deleteUserBtn', function() {
             var id = $(this).attr('data-id');
-            var url = "user/deleteUser";
+            var url = "User/deleteUser";
 
             swal.fire({
 

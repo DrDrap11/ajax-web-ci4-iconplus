@@ -1,31 +1,44 @@
-<?php namespace App\Controllers;
- 
+<?php
+
+namespace App\Controllers;
+
 use CodeIgniter\Controller;
 use App\Models\UserModel;
- 
+
 class Login extends Controller
 {
     public function index()
     {
         helper(['form']);
         echo view('login');
-    } 
- 
+    }
+
     public function auth()
     {
         $session = session();
         $model = new UserModel();
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
-        if($email == "" && $password == "") {
+        if ($email == "" && $password == "") {
             $output = ['status' => 'Tidak Boleh Kosong'];
             return $this->response->setJSON($output);
         } else {
             $data = $model->where('user_email', $email)->first();
-            if($data){
+            if ($data) {
                 $pass = $data['user_password'];
                 $verify_pass = password_verify($password, $pass);
-                if($verify_pass){
+                if ($verify_pass) {
+                    if ($data['deleted_at'] != '') {
+                        redirect()->to('login');
+                        $output = ['status' => 'Akun Tidak Ditemukan'];
+                        return $this->response->setJSON($output);
+                    }
+                    if ($data['status'] != 'Active') {
+                        redirect()->to('login');
+                        $output = ['status' => 'Akun Belum Tidak Aktif Silahkan Hubungi Admin'];
+                        return $this->response->setJSON($output);
+                    }
+
                     $ses_data = [
                         'user_id'       => $data['user_id'],
                         'user_name'     => $data['user_name'],
@@ -36,20 +49,19 @@ class Login extends Controller
                     $session->set($ses_data);
                     $output = ['status' => 'Berhasil'];
                     return $this->response->setJSON($output);
-                }else{
+                } else {
                     redirect()->to('login');
                     $output = ['status' => 'Email/Password Salah'];
                     return $this->response->setJSON($output);
                 }
-            }else{
+            } else {
                 redirect()->to('login');
                 $output = ['status' => 'Email/Password Salah'];
                 return $this->response->setJSON($output);
             }
         }
-        
     }
- 
+
     public function logout()
     {
         $session = session();
