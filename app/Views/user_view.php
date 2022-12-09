@@ -12,6 +12,7 @@
                             <th class="text-center">ID</th>
                             <th class="text-center">Nama User</th>
                             <th class="text-center">Email User</th>
+                            <th class="text-center">Role</th>
                             <th class="text-center">Status</th>
                         </tr>
                     </thead>
@@ -21,6 +22,7 @@
                             <th>ID</th>
                             <th>Nama User</th>
                             <th>Email User</th>
+                            <th>Role</th>
                             <th>Status User</th>
                         </tr>
                     </thead>
@@ -30,7 +32,7 @@
     </div>
 </div>
 
-<!--   Modal Edit OLT-->
+<!--   Modal Edit User-->
 <div class="modal modal-blur fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -42,55 +44,63 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                  <input type="hidden" id="edit_id">
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">User ID</label>
-                    <div class="col">
-                      <input type="text" id="user_id" class="form-control" readonly>
+                    <input type="hidden" id="edit_id">
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">User ID</label>
+                        <div class="col">
+                            <input type="text" id="user_id" class="form-control" readonly>
+                        </div>
                     </div>
-                  </div>
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">Username</label>
-                    <div class="col">
-                      <input type="text" id="user_name" class="form-control">
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Username</label>
+                        <div class="col">
+                            <input type="text" id="user_name" class="form-control">
+                        </div>
+
+                    </div>
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Email</label>
+                        <div class="col">
+                            <input type="text" id="user_email" class="form-control">
+                        </div>
                     </div>
 
-                  </div>
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">Email</label>
-                    <div class="col">
-                      <input type="text" id="user_email" class="form-control">
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Status Akun</label>
+                        <div class="col">
+                            <select class="form-select " id="status">
+                                <option value="">---Pilih Status---</option>
+                                <option value="Active">Active</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">Status Akun</label>
-                    <div class="col">
-                      <input type="text" id="status" class="form-control">
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Role</label>
+                        <div class="col">
+                            <select class="form-select " id="role">
+                                <option value="">---Pilih Role---</option>
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">Role</label>
-                    <div class="col">
-                      <input type="text" id="role" class="form-control">
+                    <!-- <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Created</label>
+                        <div class="col">
+                            <input type="text" id="created_at" class="form-control" readonly>
+                        </div>
                     </div>
-                  </div>
 
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">Created</label>
-                    <div class="col">
-                      <input type="text" id="created_at" class="form-control" readonly>
-                    </div>
-                  </div>
+                    <div class="form-group mb-3 row">
+                        <label class="form-label col-3 col-form-label">Updated</label>
+                        <div class="col">
+                            <input type="text" id="updated_at" class="form-control" readonly>
+                        </div>
+                    </div> -->
 
-                  <div class="form-group mb-3 row">
-                    <label class="form-label col-3 col-form-label">Updated</label>
-                    <div class="col">
-                      <input type="text" id="updated_at" class="form-control"readonly>
-                    </div>
-                  </div>
-                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
@@ -280,54 +290,57 @@
                 },
 
                 success: function(response) {
-                $.each(response, function(key, value) {
-                $('#edit_id').val(value['user_id']);
-                $('#user_id').val(value['user_id']);
-                $('#user_name').val(value['user_name']);
-                $('#user_email').val(value['user_email']);
-                $('#status').val(value['status']);
-                $('#role').val(value['role']);
-                $('#created_at').val(value['created_at']);
-                $('#updated_at').val(value['updated_at']);
-                $('#editModal').modal('show');
-          });
-        }
+                    $.each(response, function(key, value) {
+                        // $('#edit_id').val(value['user_id']);
+                        $('#user_id').val(value['user_id']);
+                        $('#user_name').val(value['user_name']);
+                        $('#user_email').val(value['user_email']);
+                        $('#status').val(value['status']);
+                        $('#role').val(value['role']);
+                        $('#created_at').val(value['created_at']);
+                        $('#updated_at').val(value['updated_at']);
+                        $('#editModal').modal('show');
+                    });
+                }
             });
             e.preventDefault();
         });
 
-        // $(document).on('click', '.btn-update', function(e) {
-        //     e.preventDefault();
+        $(document).on('click', '.btn-update', function(e) {
+            e.preventDefault();
 
-        //     $.ajax({
-        //         method: "post",
-        //         url: "olt/updateOlt",
-        //         // data: (id_kota != "") ? data1 : data2,
-        //         data: {
-        //             'edit_id': $('#edit_id').val(),
-        //             'olt_nama': $('#olt_nama_edit').val(),
-        //         },
-        //         success: function(response) {
-        //             if (response.status == "Data berhasil diupdate") {
-        //                 $('#editModal').modal('hide');
-        //                 // $('#tableData').html("");
-        //                 // display();
-        //                 $('#tabel').DataTable().ajax.reload(null, false);
-        //                 // $('#editModal')[0].reset();
+            $.ajax({
+                method: "post",
+                url: "user/updateUser",
+                // data: (id_kota != "") ? data1 : data2,
+                data: {
+                    'user_id': $('#user_id').val(),
+                    'user_name': $('#user_name').val(),
+                    'user_email': $('#user_email').val(),
+                    'status': $('#status').val(),
+                    'role': $('#role').val(),
 
-        //                 swal.fire("Berhasil", response.status, "success");
-        //             } else {
-        //                 swal.fire("Gagal", response.status, "error");
-        //             }
-        //         }
-        //     });
-        //     e.preventDefault();
-        // });
+                },
+                success: function(response) {
+                    if (response.status == "Data berhasil diupdate") {
+                        $('#editModal').modal('hide');
+                        // $('#tableData').html("");
+                        // display();
+                        $('#table').DataTable().ajax.reload(null, false);
+                        // $('#editModal')[0].reset();
+
+                        swal.fire("Berhasil", response.status, "success");
+                    } else {
+                        swal.fire("Gagal", response.status, "error");
+                    }
+                }
+            });
+            e.preventDefault();
+        });
 
         $(document).on('click', '#deleteUserBtn', function() {
             var id = $(this).attr('data-id');
-            var url = "User/deleteUser";
-            
+            var url = "user/deleteUser";
 
             swal.fire({
 
@@ -343,7 +356,7 @@
                 if (result.value) {
 
                     $.post(url, {
-                        id: id
+                        user_id: id
                     }, function(data) {
                         if (data.code == 1) {
                             Swal.fire(

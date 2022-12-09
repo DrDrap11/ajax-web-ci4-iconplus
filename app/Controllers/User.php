@@ -12,7 +12,6 @@ class User extends Controller
     {
         require_once APPPATH . 'ThirdParty/ssp.php';
         $this->db = db_connect();
-        
     }
 
     public function index()
@@ -55,14 +54,15 @@ class User extends Controller
             array("db" => "user_id", "dt" => 1),
             array("db" => "user_name", "dt" => 2),
             array("db" => "user_email", "dt" => 3),
-            array("db" => "status", "dt" => 4)
+            array("db" => "role", "dt" => 4),
+            array("db" => "status", "dt" => 5)
         );
 
         $session = session();
         $user_id = $_SESSION["user_id"];
         $role = $_SESSION["role"];
 
-        if($role === "Admin") {
+        if ($role === "Admin") {
             echo json_encode(
                 \SSP::simple($_GET, $dbDetails, $table, $primaryKey, $columns, null, "deleted_at IS NULL")
             );
@@ -95,34 +95,37 @@ class User extends Controller
         // var_dump($data);
     }
 
-    // public function updateUser()
-    // {
-    //     $validation = \Config\Services::validation();
-    //     $model = new User_model;
+    public function updateUser()
+    {
+        $validation = \Config\Services::validation();
+        $model = new User_model;
 
-    //         $id = $this->request->getPost("user_id");
-    //         $data = [
-    //             'user_name'          => $this->request->getPost('user_name'),
-    //             'user_email'          => $this->request->getPost('user_email'),
-    //         ];
+        $id = $this->request->getPost("user_id");
+        $data = [
+            'user_name'          => $this->request->getPost('user_name'),
+            'user_email'          => $this->request->getPost('user_email'),
+            'status'          => $this->request->getPost('status'),
+            'role'          => $this->request->getPost('role')
+        ];
 
-    //         $update = $model->update($id, $data);
+        $update = $model->update($id, $data);
 
-    //         if ($update) {
-    //             $output = ['status' => 'Data berhasil diupdate'];
-    //             return $this->response->setJSON($output);
-    //         } else {
-    //             $output = ['status' => 'Data gagal diupdate'];
-    //             return $this->response->setJSON($output);
-    //         }
-    //     // }
-    // }
+        if ($update) {
+            $output = ['status' => 'Data berhasil diupdate'];
+            return $this->response->setJSON($output);
+        } else {
+            $output = ['status' => 'Data gagal diupdate'];
+            return $this->response->setJSON($output);
+        }
+        // }
+    }
 
-    public function deleteUser($id){
+    public function deleteUser()
+    {
 
 
         $dataModel = new \App\Models\User_Model();
-        $data_id = $this->request->getPost('id');
+        $data_id = $this->request->getPost('user_id');
         $query = $dataModel->delete($data_id);
 
         if ($query) {
